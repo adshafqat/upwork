@@ -59,5 +59,11 @@ stages:
     - task: KubernetesManifest@0
       inputs:
         action: 'deploy'
-        kubernetesServiceConnection: ''
-        manifests: 'replaceMe'
+        kubernetesServiceConnection: 'aks'
+        manifests: |
+          $(Pipeline.workspace)/manifests/1-namespace.yml
+          $(Pipeline.workspace)/manifests/2-serviceaccount.yml
+          $(Pipeline.workspace)/manifests/3-configmap.yml
+          $(Pipeline.workspace)/manifests/4-secret.yml
+          $(Pipeline.workspace)/manifests/5-deployment.yml
+          $(Pipeline.workspace)/manifests/6-service.yml
