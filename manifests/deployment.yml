@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upworkwebapp
+  namespace: upwork
+  labels:
+    app: upworkwebapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: upworkwebapp
+  template:
+    metadata:
+      labels:
+        app: upworkwebapp
+    spec:
+      serviceAccountName: upworkwebappsa
+      containers:
+        - name: upworkwebapp
+          image: docker.io/ashafqat/upworkimage:v1.0
+          imagePullPolicy: IfNotPresent
+          # This is a examplle of adding environment variables. You can remove env section if not required
+          env:
+          - name: BACKEND_SERVICE1_URL
+            value: http://service1.namespace
+          - name: BACKEND_SERVICE2_URL
+            value: http://service2.namespace
+          ####
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            requests:
+              cpu: 300m
+              memory: 512Mi
+          # This section is only required if you are attaching a volume like a config map or secret to your application
+          volumeMounts:
+          - mountPath: /tmp
+            name: config
+            readOnly: true
+          - mountPath: /tmp
+            name: secrets
+            readOnly: true  
+          ####
+      # This section is only required if you are attaching a volume like a config map or a secret to your application
+      volumes:
+        - name: config
+          configMap:
+            # Provide the name of the ConfigMap you want to mount.
+            name: upworkwebappcm
+            items:
+            - key: "user-interface.properties"
+              path: "user-interface.properties"
+        - name: secrets
+          secret:
+            # Provide the name of the secret you want to mount.
+            name: upworksecret
+        ####

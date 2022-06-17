@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: ConfigMap
+metadata:
+  name: upworkwebappcm
+  namespace: upwork
+data:
+  # property-like keys; each key maps to a simple value
+  user-interface.properties: |
+    color.good=purple
+    color.bad=yellow
+    allow.textmode=true  
