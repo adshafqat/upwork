@@ -37,3 +37,27 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.workspace)/s/manifests'
+        artifact: 'manifests'
+        publishLocation: 'pipeline'
+- stage: Deploy
+  displayName: Deploy Kubernetes Manifests
+  dependsOn: Build
+  jobs:
+  - job: Deploy
+    displayName: Deploy to AKS
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        artifactName: 'manifests'
+        targetPath: '$(Pipeline.workspace)/manifests'
+    - task: KubernetesManifest@0
+      inputs:
+        action: 'deploy'
+        kubernetesServiceConnection: ''
+        manifests: 'replaceMe'
