@@ -58,6 +58,14 @@ stages:
         targetPath: '$(Pipeline.workspace)/manifests'
     - task: KubernetesManifest@0
       inputs:
+        action: 'createSecret'
+        kubernetesServiceConnection: 'aks'
+        namespace: 'upwork'
+        secretType: 'dockerRegistry'
+        secretName: 'devregistrysecret'
+        dockerRegistryEndpoint: 'devadeelregistry'
+    - task: KubernetesManifest@0
+      inputs:
         action: 'deploy'
         kubernetesServiceConnection: 'aks'
         namespace: 'upwork'
