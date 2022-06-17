@@ -48,7 +48,7 @@ spec:
           - mountPath: /tmp
             name: config
             readOnly: true
-          - mountPath: /tmp
+          - mountPath: /tmp/secret-config
             name: secrets
             readOnly: true  
           ####
