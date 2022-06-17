@@ -64,5 +64,5 @@ spec:
         - name: secrets
           secret:
             # Provide the name of the secret you want to mount.
-            name: upworksecret
+            secretName: upworksecret
         ####
