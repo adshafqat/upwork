@@ -60,8 +60,8 @@ stages:
       inputs:
         action: 'deploy'
         kubernetesServiceConnection: 'aks'
+        namespace: 'upwork'
         manifests: |
-          $(Pipeline.workspace)/manifests/1-namespace.yml
           $(Pipeline.workspace)/manifests/2-serviceaccount.yml
           $(Pipeline.workspace)/manifests/3-configmap.yml
           $(Pipeline.workspace)/manifests/4-secret.yml
