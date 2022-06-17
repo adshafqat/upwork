@@ -43,26 +43,3 @@ spec:
             requests:
               cpu: 300m
               memory: 512Mi
-          # This section is only required if you are attaching a volume like a config map or secret to your application
-          volumeMounts:
-          - mountPath: /etc
-            name: config
-            readOnly: true
-          - mountPath: /etc/secret-config
-            name: secrets
-            readOnly: true  
-          ####
-      # This section is only required if you are attaching a volume like a config map or a secret to your application
-      volumes:
-        - name: config
-          configMap:
-            # Provide the name of the ConfigMap you want to mount.
-            name: upworkwebappcm
-            items:
-            - key: "user-interface.properties"
-              path: "user-interface.properties"
-        - name: secrets
-          secret:
-            # Provide the name of the secret you want to mount.
-            secretName: upworksecret
-        ####
