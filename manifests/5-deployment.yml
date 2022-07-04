@@ -18,8 +18,8 @@ spec:
       serviceAccountName: upworkwebappsa
       containers:
         - name: upworkwebapp
-         # image: docker.io/ashafqat/upworkimage:v1.0
-          image: devadeelregistry.azurecr.io/adshafqatupwork:8        
+          image: docker.io/ashafqat/upworkimage:v1.0
+          # image: devadeelregistry.azurecr.io/adshafqatupwork:8        
           imagePullPolicy: IfNotPresent
           # This is a examplle of adding environment variables. You can remove env section if not required
           env:
