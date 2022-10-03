@@ -2,6 +2,8 @@ package zaynsolutions.com.upwork;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime; 
 import java.lang.Math;
@@ -58,7 +60,7 @@ public class UpworkController {
 	
 	
 	@GetMapping("/failureresponse")
-	public String returnFailureResponse() {
+	public ResponseEntity<String>  returnFailureResponse() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
 		System.out.println("This is a test application and failure response method:"+dtf.format(now));
@@ -70,15 +72,11 @@ public class UpworkController {
 		
 		if(rand == 1 || rand == 3 || rand == 5 || rand == 7 || rand == 9){
 			System.out.println("Going for fail this time");
-			try {
-			    throw new InterruptedException("sorry device error");   
-			} catch (InterruptedException e) {
-			    e.printStackTrace();
-			}
-			return "This time I am slow. 5 second delay. Random number vaule is :"+rand+" DateTime:"+dtf.format(now);
+
+			return new ResponseEntity<>("This time I am returning failure HttpStatus.UNAUTHORIZED Code. Random number vaule is :"+rand+" DateTime:"+dtf.format(now), HttpStatus.UNAUTHORIZED);
 		}
 		else{
-			return "This time I am sucessful, but I might fail next time. Random number vaule is :"+rand+" DateTime:"+dtf.format(now);
+			return new ResponseEntity<>("This time I am returning Success Response. Random number vaule is :"+rand+" DateTime:"+dtf.format(now), HttpStatus.OK);
 		}
 	}
 }
