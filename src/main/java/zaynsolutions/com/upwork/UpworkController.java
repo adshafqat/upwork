@@ -21,7 +21,7 @@ public class UpworkController {
         	int min = 1;
         	int range = max - min + 1;
 		int rand = (int)(Math.random() * range) + min;
-		return "This is a test application. Random number vaule is :"+rand+" DateTime:"+dtf.format(now);
+		return "This is a test application. Random number value is :"+rand+" DateTime:"+dtf.format(now);
 	}
 
 	@GetMapping("/alwaysup")
@@ -51,10 +51,10 @@ public class UpworkController {
 			} catch (InterruptedException e) {
 			    e.printStackTrace();
 			}
-			return "This time I am slow. 5 second delay. Random number vaule is :"+rand+" DateTime:"+dtf.format(now);
+			return "This time I am slow. 5 second delay. Random number value is :"+rand+" DateTime:"+dtf.format(now);
 		}
 		else{
-			return "This time I am fast. Random number vaule is :"+rand+" DateTime:"+dtf.format(now);
+			return "This time I am fast. Random number value is :"+rand+" DateTime:"+dtf.format(now);
 		}
 	}
 	
@@ -73,10 +73,10 @@ public class UpworkController {
 		if(rand == 1 || rand == 3 || rand == 5 || rand == 7 || rand == 9){
 			System.out.println("Going for fail this time");
 
-			return new ResponseEntity<>("This time I am returning failure HttpStatus.UNAUTHORIZED Code. Random number vaule is :"+rand+" DateTime:"+dtf.format(now), HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>("This time I am returning failure HttpStatus.UNAUTHORIZED Code. Random number value is :"+rand+" DateTime:"+dtf.format(now), HttpStatus.UNAUTHORIZED);
 		}
 		else{
-			return new ResponseEntity<>("This time I am returning Success Response. Random number vaule is :"+rand+" DateTime:"+dtf.format(now), HttpStatus.OK);
+			return new ResponseEntity<>("This time I am returning Success Response. Random number value is :"+rand+" DateTime:"+dtf.format(now), HttpStatus.OK);
 		}
 	}
 }
