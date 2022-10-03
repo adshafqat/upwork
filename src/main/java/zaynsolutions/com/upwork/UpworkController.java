@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime; 
 import java.lang.Math;
+import java.util.concurrent.*;
 
 @RestController
 public class UpworkController {
@@ -36,11 +37,22 @@ public class UpworkController {
 		LocalDateTime now = LocalDateTime.now();  
 		System.out.println("This is a test application:"+dtf.format(now));
 		
-		int max = 5;
+		int max = 10;
         	int min = 1;
         	int range = max - min + 1;
 		int rand = (int)(Math.random() * range) + min;
-		return "This is a test application. Random number vaule is :"+rand+" DateTime:"+dtf.format(now);
 		
+		if(rand == 1 || rand == 3 || rand == 5 || rand == 7 || rand == 9){
+			System.out.println("Going for sleep for 5 secs");
+			try {
+			    Thread.sleep(5000);
+			} catch (InterruptedException e) {
+			    e.printStackTrace();
+			}
+			return "This time I am slow. 5 second delay. Random number vaule is :"+rand+" DateTime:"+dtf.format(now);
+		}
+		else{
+			return "This time I am fast. Random number vaule is :"+rand+" DateTime:"+dtf.format(now);
+		}
 	}
 }
