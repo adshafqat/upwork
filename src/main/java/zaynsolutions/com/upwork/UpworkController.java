@@ -55,4 +55,31 @@ public class UpworkController {
 			return "This time I am fast. Random number vaule is :"+rand+" DateTime:"+dtf.format(now);
 		}
 	}
+	
+	
+	@GetMapping("/failureresponse")
+    	@ResponseStatus(code = HttpStatus.OK, reason = "OK")
+	public String returnFailureResponse() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now();  
+		System.out.println("This is a test application:"+dtf.format(now));
+		
+		int max = 10;
+        	int min = 1;
+        	int range = max - min + 1;
+		int rand = (int)(Math.random() * range) + min;
+		
+		if(rand == 1 || rand == 3 || rand == 5 || rand == 7 || rand == 9){
+			System.out.println("Going for sleep for 5 secs");
+			try {
+			    throw new InterruptedException("sorry device error");   
+			} catch (InterruptedException e) {
+			    e.printStackTrace();
+			}
+			return "This time I am slow. 5 second delay. Random number vaule is :"+rand+" DateTime:"+dtf.format(now);
+		}
+		else{
+			return "This time I am sucessful, but I might fail next time. Random number vaule is :"+rand+" DateTime:"+dtf.format(now);
+		}
+	}
 }
