@@ -26,7 +26,7 @@ public class UpworkController {
 	
 	
 	@GetMapping("/slowresponse")
-	public String returnResponse() {
+	public String returnSlowResponse() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
 		System.out.println("This is a test application:"+dtf.format(now));
