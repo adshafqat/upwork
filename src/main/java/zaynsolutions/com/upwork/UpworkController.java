@@ -28,7 +28,7 @@ public class UpworkController {
 	public String returnUpResponse() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
-		System.out.println("This is a dummy project for upwork demo. Date:"+dtf.format(now));
+		System.out.println("This is a test application and always up response method. Date:"+dtf.format(now));
 		return "I am returning a sucess response. DateTime:"+dtf.format(now);
 	}
 	
@@ -45,7 +45,7 @@ public class UpworkController {
 		int rand = (int)(Math.random() * range) + min;
 		
 		if(rand == 1 || rand == 3 || rand == 5 || rand == 7 || rand == 9){
-			System.out.println("Going for sleep for 5 secs");
+			System.out.println("Going to sleep for 5 secs");
 			try {
 			    Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -71,7 +71,7 @@ public class UpworkController {
 		int rand = (int)(Math.random() * range) + min;
 		
 		if(rand == 1 || rand == 3 || rand == 5 || rand == 7 || rand == 9){
-			System.out.println("Going for fail this time");
+			System.out.println("Going to fail this time");
 
 			return new ResponseEntity<>("This time I am returning failure HttpStatus.UNAUTHORIZED Code. Random number value is :"+rand+" DateTime:"+dtf.format(now), HttpStatus.UNAUTHORIZED);
 		}
