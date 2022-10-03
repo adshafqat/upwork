@@ -12,7 +12,7 @@ public class UpworkController {
 	public String returnResponse() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
-		System.out.println("This is a dummy project for upwork demo. Date:"+dtf.format(now));		
+		System.out.println("This is a dummy project. Date:"+dtf.format(now));		
 				
 		int max = 5;
         	int min = 1;
