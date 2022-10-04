@@ -11,21 +11,9 @@ import java.util.concurrent.*;
 
 @RestController
 public class UpworkAPIController {
-	@GetMapping("/")
-	public String returnResponse() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-		LocalDateTime now = LocalDateTime.now();  
-		System.out.println("This is a dummy API project. Date:"+dtf.format(now));		
-				
-		int max = 5;
-        	int min = 1;
-        	int range = max - min + 1;
-		int rand = (int)(Math.random() * range) + min;
-		return "This is a test API application. Random number value is :"+rand+" DateTime:"+dtf.format(now);
-	}
 
-	@GetMapping("/alwaysup")
-	public String returnUpResponse() {
+	@GetMapping("/apialwaysup")
+	public String returnApiUpResponse() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
 		System.out.println("This is a test application and always up response method. Date:"+dtf.format(now));
@@ -33,8 +21,8 @@ public class UpworkAPIController {
 	}
 	
 	
-	@GetMapping("/slowresponse")
-	public String returnSlowResponse() {
+	@GetMapping("/apislowresponse")
+	public String returnApiSlowResponse() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
 		System.out.println("This is a test application and slow response method:"+dtf.format(now));
@@ -59,8 +47,8 @@ public class UpworkAPIController {
 	}
 	
 	
-	@GetMapping("/failureresponse")
-	public ResponseEntity<String>  returnFailureResponse() {
+	@GetMapping("/apifailureresponse")
+	public ResponseEntity<String>  returnApiFailureResponse() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
 		System.out.println("This is a test application and failure response method:"+dtf.format(now));
