@@ -3,7 +3,7 @@ package zaynsolutions.com.upwork;
 public class User {
 
   private final String userId;
-	private final String firstName;
+  private final String firstName;
   private final String lastName;
   private final String address;
 
