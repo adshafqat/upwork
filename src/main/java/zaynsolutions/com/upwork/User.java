@@ -6,27 +6,33 @@ public class User {
   private final String firstName;
   private final String lastName;
   private final String address;
+  private final String message;
 
-	public User(String userId, String firstName, String lastName, String address) {
+	public User(String userId, String firstName, String lastName, String address, String message) {
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
+		this.message = message;
 	}
 
 	public String getUserId() {
 		return userId;
 	}
 
-  public String getFirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
-  
-  public String getLastName() {
+
+	public String getLastName() {
 		return lastName;
 	}
-  
-  public String getAddress() {
+
+	public String getAddress() {
 		return address;
+	}
+	
+	public String getMessage() {
+		return message;
 	}
 }
