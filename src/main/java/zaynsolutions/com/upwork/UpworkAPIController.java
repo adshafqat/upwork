@@ -20,12 +20,12 @@ public class UpworkAPIController {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
 		System.out.println("This is a test application and always up response method. Date:"+dtf.format(now));
-		return new User(userid,"John","Hopkin","London Road");
+		return new User(userid,"John","Hopkin","London Road","This is a response of always up method");
 	}
 	
 	
 	@GetMapping("/apislowresponse")
-	public String returnApiSlowResponse() {
+	public User returnApiSlowResponse(@RequestParam(value = "userid", defaultValue = "ashafqat") String userid) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
 		System.out.println("This is a test application and slow response method:"+dtf.format(now));
@@ -42,16 +42,16 @@ public class UpworkAPIController {
 			} catch (InterruptedException e) {
 			    e.printStackTrace();
 			}
-			return "This time I am slow. 5 second delay. Random number value is :"+rand+" DateTime:"+dtf.format(now);
+			return new User(userid,"John","Hopkin","London Road","This time I am slow. 5 second delay. Random number value is :"+rand+" DateTime:"+dtf.format(now));
 		}
 		else{
-			return "This time I am fast. Random number value is :"+rand+" DateTime:"+dtf.format(now);
+			return new User(userid,"John","Hopkin","London Road","This time I am quick and no delay. Random number value is :"+rand+" DateTime:"+dtf.format(now));
 		}
 	}
 	
 	
 	@GetMapping("/apifailureresponse")
-	public ResponseEntity<String>  returnApiFailureResponse() {
+	public ResponseEntity<User>  returnApiFailureResponse(@RequestParam(value = "userid", defaultValue = "ashafqat") String userid) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
 		System.out.println("This is a test application and failure response method:"+dtf.format(now));
@@ -63,11 +63,11 @@ public class UpworkAPIController {
 		
 		if(rand == 1 || rand == 3 || rand == 5 || rand == 7 || rand == 9){
 			System.out.println("Going to fail this time");
-
-			return new ResponseEntity<>("This time I am returning failure HttpStatus.UNAUTHORIZED Code. Random number value is :"+rand+" DateTime:"+dtf.format(now), HttpStatus.UNAUTHORIZED);
+			
+			return new ResponseEntity<>(new User(userid,"John","Hopkin","London Road","This time I am returning UNAUTHORIZED error HTTP code. Random number value is :"+rand+" DateTime:"+dtf.format(now)), HttpStatus.UNAUTHORIZED);
 		}
 		else{
-			return new ResponseEntity<>("This time I am returning Success Response. Random number value is :"+rand+" DateTime:"+dtf.format(now), HttpStatus.OK);
+			return new ResponseEntity<>(new User(userid,"John","Hopkin","London Road","This time I am returning OK HTTP code. Random number value is :"+rand+" DateTime:"+dtf.format(now)), HttpStatus.OK);
 		}
 	}
 }
