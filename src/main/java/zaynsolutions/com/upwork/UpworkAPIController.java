@@ -8,16 +8,19 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime; 
 import java.lang.Math;
 import java.util.concurrent.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UpworkAPIController {
 
 	@GetMapping("/apialwaysup")
-	public String returnApiUpResponse() {
+	public User returnApiUpResponse(@RequestParam(value = "userId", defaultValue = "ashafqat") String name) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
 		System.out.println("This is a test application and always up response method. Date:"+dtf.format(now));
-		return "I am returning a sucess response. DateTime:"+dtf.format(now);
+		return new User(userId,"John","Hopkin","London Road");
 	}
 	
 	
