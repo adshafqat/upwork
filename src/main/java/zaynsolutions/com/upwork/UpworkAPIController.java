@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class UpworkAPIController {
 
 	@GetMapping("/apialwaysup")
-	public User returnApiUpResponse(@RequestParam(value = "userId", defaultValue = "ashafqat") String name) {
+	public User returnApiUpResponse(@RequestParam(value = "userid", defaultValue = "ashafqat") String userid) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
 		System.out.println("This is a test application and always up response method. Date:"+dtf.format(now));
-		return new User(userId,"John","Hopkin","London Road");
+		return new User(userid,"John","Hopkin","London Road");
 	}
 	
 	
